@@ -1,12 +1,19 @@
-import { useState } from 'react'
 import './App.css'
 
-function App() {
-
+function App () {
   return (
-    <h1>
-      Prueba técnica
-    </h1>
+    <div>
+      <header>
+        <form className='form'>
+          <input placeholder='Avengers, Star Wars, The Matrix...' />
+        </form>
+        <button type='submit'>Buscar</button>
+      </header>
+
+      <main>
+        Aquí irán los resultados
+      </main>
+    </div>
   )
 }
 
