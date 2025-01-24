@@ -3,7 +3,7 @@ export function ListOfMovies ({ movies }) {
     <ul>  {/*                                        Para utilizar epxresiones JavaScript como variables, funciones, metodos.. siempre hay que utilizarlas entre llaves {} */}
       {
         movies.map(movie => (
-          <li key={movie.imdbID}>
+          <li key={movie.id}>
             <h3>{movie.title}</h3>
             <p>{movie.year}</p>
             <img src={movie.poster} alt={movie.title} />

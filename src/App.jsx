@@ -1,7 +1,8 @@
 import './App.css'
+import { useState } from 'react'
 /* useRef te permite tener un valor que persiste aunque se renderice el componente. Tampoco renderiza
 el componente aunque cambie su valor. También guarda referencias a elementos del DOM */
-import { useRef } from 'react'
+// import { useRef } from 'react'
 import { useMovies } from './hooks/useMovies.jsx'
 // const API_KEY = 'e4f4280'
 // const URL_API = `http://www.omdbapi.com/?apikey=${API_KEY}&`
@@ -9,18 +10,27 @@ import { useMovies } from './hooks/useMovies.jsx'
 import { Movies } from './components/Movies'
 
 function App () {
-  // Custom Hook
-  const { movies } = useMovies() // { movies: mappedMovies }
+  const { movies } = useMovies() //                           Custom Hook return { movies: mappedMovies }
+  // const inputRef = useRef()
+  const [query, setQuery] = useState('')
+
+  const handleSubmit = (event) => {
+    event.preventdefault()
+    console.log({ query })
+  }
+  const handleChange = (event) => {
+    setQuery(event.target.value)
+  }
 
   return (
     <div className='page'>
       <header>
         <h1>Buscador de películas</h1>
         <div className='linea'>
-          <form className='form'>
-            <input placeholder='Avengers, Star Wars, The Matrix...' />
+          <form className='form' onSubmit={handleSubmit}>
+            <input onChange={handleChange} value={query} name='query' placeholder='Avengers, Star Wars, The Matrix...' />
+            <button type='submit'>Buscar</button>
           </form>
-          <button type='submit'>Buscar</button>
         </div>
       </header>
 
