@@ -1,14 +1,17 @@
 import './App.css'
+/* useRef te permite tener un valor que persiste aunque se renderice el componente. Tampoco renderiza
+el componente aunque cambie su valor. También guarda referencias a elementos del DOM */
+import { useRef } from 'react'
+import { useMovies } from './hooks/useMovies.jsx'
 // const API_KEY = 'e4f4280'
 // const URL_API = `http://www.omdbapi.com/?apikey=${API_KEY}&`
-import responseMovies from './mocks/with-results.json' /*       El archivo original "with-results.json" es un es un Json {}. Pero al importarlo como
-*                                                               "responseMovies" el empaquetador Vite lo convierte en un objeto {} automáticamente. */
+
 import { Movies } from './components/Movies'
-// import withoutResults from './mocks/no-results.json'
 
 function App () {
-  const movies = responseMovies.Search // []
-  console.log(movies)
+  // Custom Hook
+  const { movies } = useMovies() // { movies: mappedMovies }
+
   return (
     <div className='page'>
       <header>
