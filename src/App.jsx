@@ -23,7 +23,7 @@ function App () {
   const handleChange = (event) => { //                        Se ejecuta cada vez que cambia el valor del texto
   //                                                          Esta función está asociada al input por la propiedad onChange que dispara la función cada vez que cambia la información
     const newQuery = event.target.value //                    "event.target" es una referencia al elemento que disparó el evento (<input> en este caso)
-    if (newQuery.startsWith(' ')) return //                   Prevalidamos aquí y si empieza por espacio no setea el contenido del input
+    if (newQuery.startsWith(' ')) return //                   Prevalidamos aquí y si empieza por espacio no setea el contenido del input //
     setQuery(newQuery)
 
     if (query === '') {
