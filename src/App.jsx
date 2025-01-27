@@ -15,7 +15,7 @@ function App () {
   const [query, setQuery] = useState('')
 
   const handleSubmit = (event) => {
-    event.preventdefault()
+    event.preventDefault()
     console.log({ query })
   }
   const handleChange = (event) => {
