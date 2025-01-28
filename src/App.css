@@ -1,14 +1,67 @@
+/* Haz que las películas se muestren en un grid responsive:
+    - Primero al contenedor principal de la página (<div className='page'>) le damos un width del 100%
+    y un width máximo de 800px por ejemplo.
+    
+    - Después al contenedor padre de la lista o del componente que renderiza la lista (main) le ajustamos el
+    width al 100% también para que intente siempre coger el máximo del contenedor donde se encuentra.
+    
+    - Finalmente a la lista (<ul className='movies'>) le damos el display: grid para establecer el sistema
+    de rejilla, el width 100% para que ocupe todo el espacio disponible y el 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) para que adapte las columnas con minimo 200px
+*/
+
 .page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* place-items: center; */
+    width: 100%;   
+    max-width: 1200px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%
+}
+form {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.movies {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid; /* Sistema de rejilla (grid), lo que permite posicionarlos en filas y columnas. */
+    width: 100%; /* Establece que el ancho del <ul> ocupe el 100% del ancho disponible en su contenedor padre.*/
+    
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /*
+        Controla cómo se organizan las columnas en el grid, permite establecer el número de columnas y el tamaño de cada una de ellas
+        repeat() permite repetir un patrón en las columnas
+        auto-fit ajusta automáticamente el número de columnas que caben dentro del ancho disponible.
+        minmax(200px, 1fr): Cada columna tendrá:
+            Un mínimo de 200px de ancho (esto asegura que no se encojan demasiado).
+            Un máximo de 1fr, las columnas se ajustaran dinamicamente para no dejar espacios vacios
+        Exp: Si hay 500px disponibles, el min200px hace que tenga que repartirse entre dos columnas máximo y que sobren 100px. 
+        Después, como hemos establecido el maxímo en 1fr, coge los 100px píxeles que sobran y se establece las columnas en
+        250px para cada una tenga el maximo de 1 fraccion disponible
+    */
+    
+    gap: 22px
+    
 }
 
-.linea {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.movie {
+    text-align: center;
+}
+
+.movie h3, .movie p {
+    padding: 0;
+}
+
+.movie img {
+    border-radius: 9px;
 }
