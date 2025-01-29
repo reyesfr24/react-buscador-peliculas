@@ -5,24 +5,21 @@ el componente aunque cambie su valor. También guarda referencias a elementos de
 // import { useRef } from 'react'
 import { useMovies } from './hooks/useMovies.jsx'
 import { useSearch } from './hooks/useSearch.jsx'
-// const API_KEY = 'e4f4280'
-// const URL_API = `http://www.omdbapi.com/?apikey=${API_KEY}&`
-
 import { Movies } from './components/Movies'
 
 function App () {
-  const { movies } = useMovies() //                           Custom Hook return { movies: mappedMovies }
   const { search, updateSearch, error } = useSearch()
+  const { movies, getMovies } = useMovies({ search }) //      Custom Hook return { movies: mappedMovies }
 
   const handleSubmit = (event) => { //                        Este método se ejecuta al pulsar el botón
     event.preventDefault() //                                 Al pasar el "event" nos permite bloquar que recargue la pagina utilizando "event.preventDefault()" cuando se dispara el evento
-    console.log({ search })
+    getMovies()
   }
 
   const handleChange = (event) => { //                        Se ejecuta cada vez que cambia el valor del texto
   //                                                          Esta función está asociada al input por la propiedad onChange que dispara la función cada vez que cambia la información
     updateSearch(event.target.value) //                       "event.target" es una referencia al elemento que disparó el evento (<input> en este caso)
-  }
+  } //                                                        Esto renderiza el componente, ya que updateSearch es el setter del estado del customHook "useSearch"
 
   return (
     <div className='page'>
@@ -31,7 +28,7 @@ function App () {
         <form className='form' onSubmit={handleSubmit}>
           <input
             onChange={handleChange} //                       Asocia el cambio en el input a la función
-            value={search} //                                 La propiedad "value={query}" se utiliza para hacer que el campo de texto sea controlado,
+            value={search} //                                La propiedad "value={query}" se utiliza para hacer que el campo de texto sea controlado,
             name='query'//                                   asegura que el valor visible del campo de texto siempre coincida con el valor del estado query
             placeholder='Avengers, Star Wars, The Matrix...'
           />
