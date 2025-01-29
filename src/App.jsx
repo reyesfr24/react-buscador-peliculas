@@ -9,7 +9,7 @@ import { Movies } from './components/Movies'
 
 function App () {
   const { search, updateSearch, error } = useSearch()
-  const { movies, getMovies } = useMovies({ search }) //      Custom Hook return { movies: mappedMovies }
+  const { movies, getMovies, loading } = useMovies({ search }) //      Custom Hook return { movies: mappedMovies }
 
   const handleSubmit = (event) => { //                        Este método se ejecuta al pulsar el botón
     event.preventDefault() //                                 Al pasar el "event" nos permite bloquar que recargue la pagina utilizando "event.preventDefault()" cuando se dispara el evento
@@ -38,7 +38,9 @@ function App () {
       </header>
 
       <main>
-        <Movies listMovies={movies} />
+        {
+          loading ? <p>Cargando...</p> : <Movies listMovies={movies} />
+        }
         {/* Cuando pasamos props que no son strings (arrays, objetos, funciones..) lo que alberga el contenido debe de ir entre llaves *
          Esto crea un objeto llamado props y le asigna propiedades con el nombre que definamos antes del signo =
          Por tanto, el componente recibe un objeto llamado "props" con una propiedad llamada listMovies que contiene el
